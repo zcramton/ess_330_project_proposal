@@ -1,0 +1,24 @@
+---
+title: Project Proposals- Lab 5
+authors:
+  - name: Bella Conrad
+    affiliation: Colorado State University
+    roles: writing
+    corresponding: true
+  - name: Zac Cramton
+    affiliation: Colorado State University
+    roles: writing
+    corresponding: False
+  - name: Rachel Delorie
+    affiliation: Colorado State University
+    roles: writing
+    corresponding: False
+bibliography: references.bib
+csl: ./apa.csl
+output:
+  html_document:
+    github_pages: true
+---
+
+## Section
+This is a simple placeholder for the manuscript's main document [@knuth84].
