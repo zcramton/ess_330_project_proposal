@@ -27,4 +27,6 @@ output:
 
 ### Introduction
 
-\- Since 2008, the majority of the world's population has lived in urban areas, a result of urbanization in developing countries [@kohlhase2013new; @beall2010urbanization]. The United States developed earlier than many nations, with more than 50 percent of the population living in urban areas ^[Prior to the 2020 Census urban areas were defined as any area with greater than 2500 people. Following the 2010 census urban clusters described areas with populations greater than 2,500 and less than 50,000; urbanized areas described areas with a population greater than 50,000 [@ratcliffe_redefining_2022]]For the 2020 Census the threshold was changed to 5000 people.] by the 14th Census in 1920 [@slack2020changing].
+\- Since 2008, the majority of the world's population has lived in urban areas, a result of urbanization in developing countries [@kohlhase2013new; @beall2010urbanization]. The United States developed earlier than many nations, with more than 50 percent of the population living in urban areas[^urban_def]. For the 2020 Census the threshold was changed to 5000 people.] by the 14th Census in 1920 [@slack2020changing].
+
+[^urban_def]: Prior to the 2020 Census urban areas were defined as any area with greater than 2500 people. Following the 2010 census urban clusters described areas with populations greater than 2,500 and less than 50,000; urbanized areas described areas with a population greater than 50,000 [@ratcliffe_redefining_2022].
