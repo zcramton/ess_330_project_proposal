@@ -15,10 +15,14 @@ authors:
     corresponding: False
 bibliography: references.bib
 csl: ./apa.csl
+toc: FALSE
 output:
   html_document:
     github_pages: true
 ---
 
-## Section
-This is a simple placeholder for the manuscript's main document [@knuth84].
+# Green Cities: The Impact of Urban Open Space on Local Climate
+
+## Introduction
+
+This is a simple placeholder for the manuscript's main document.
