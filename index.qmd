@@ -19,6 +19,7 @@ toc: FALSE
 output:
   html_document:
     github_pages: true
+    css: "styles.css"
 ---
 
 # Urbanization, Density and Access to Public Parks in the United States
@@ -27,11 +28,11 @@ output:
 
 ### Introduction
 
-\- Since 2008, the majority of the world's population has lived in urban areas, a result of urbanization in developing countries [@kohlhase2013new; @beall2010urbanization]. The United States developed earlier than many nations, with more than 50 percent of the population living in urban areas[^urban_def]. For the 2020 Census the threshold was changed to 5000 people.] by the 14th Census in 1920. In the century since the 1920 census the percentage of individuals living in urban areas has increased to 80.7% [@slack2020changing]. As more people moved to urban areas, those areas expanded forming urbanized areas and large cities. 
-\- Urban planning has existed for centuries out of necessity, historically dominated by efficiency and utilitarianism, optimizing the world we live in for profitability, corporate productivity, and automobile-based mobility. This optimization came with sacrifices, which now impact an increasingly large majority of the population. In recent years, the discipline has begun to prioritize human factors over utilitarian efficiency. Thousands of years of living in rural settings makes urban living hard for most people's biology. Connection to nature and time outdoors even in small amounts has been shown to be a vital part maintaining physical and mental health [DOTHIS:: INSERT SOURCE HERE]. In an effort to make urban spaces more livable, planners are turning to parks and natural areas to connect people to nature.
-\- Equity issues aside, overturning and correcting more than a century of bad planning is a daunting task. Many cities filled in and built up over the course of the 20th century as land became a premium commodity [DOTHIS:: FIND A SOURCE???]. Does this density present significant challenges for today's planning professionals? This research seeks to investigate the relationship between urban demographics like density and park access. In exploring this relationship, we hypothesize that there is an intermediate/sublinear relationship between urban population density and public open space availability.
+<p> Since 2008, the majority of the world's population has lived in urban areas, a result of urbanization in developing countries [@kohlhase2013new; @beall2010urbanization]. The United States developed earlier than many nations, with more than 50 percent of the population living in urban areas[^urban_def]. For the 2020 Census the threshold was changed to 5000 people.] by the 14th Census in 1920. In the century since the 1920 census the percentage of individuals living in urban areas has increased to 80.7% [@slack2020changing]. As more people moved to urban areas, those areas expanded forming urbanized areas and large cities.
+<p>  Urban planning has existed for centuries out of necessity, historically dominated by efficiency and utilitarianism, optimizing the world we live in for profitability, corporate productivity, and automobile-based mobility. This optimization came with sacrifices, which now impact an increasingly large majority of the population. In recent years, the discipline has begun to prioritize human factors over utilitarian efficiency. Thousands of years of living in rural settings makes urban living hard for most people's biology. Connection to nature and time outdoors even in small amounts has been shown to be a vital part maintaining physical and mental health [DOTHIS:: INSERT SOURCE HERE]. In an effort to make urban spaces more livable, planners are turning to parks and natural areas to connect people to nature.
+<p>  Equity issues aside, overturning and correcting more than a century of bad planning is a daunting task. Many cities filled in and built up over the course of the 20th century as land became a premium commodity [DOTHIS:: FIND A SOURCE???]. Does this density present significant challenges for today's planning professionals? This research seeks to investigate the relationship between urban demographics like density and park access. In exploring this relationship, we hypothesize that there is an intermediate/sublinear relationship between urban population density and public open space availability.
 
-## DTM Discussion if desired
+### DTM Discussion if desired (Likely for long form introduction section)
 This puts the US in phase three or post-industrial phase of the demographic transition model.
 
 
