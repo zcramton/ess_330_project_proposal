@@ -32,8 +32,20 @@ output:
 <p>  Urban planning has existed for centuries out of necessity, historically dominated by efficiency and utilitarianism, optimizing the world we live in for profitability, corporate productivity, and automobile-based mobility. This optimization came with sacrifices, which now impact an increasingly large majority of the population. In recent years, the discipline has begun to prioritize human factors over utilitarian efficiency. Thousands of years of living in rural settings makes urban living hard for most people's biology. Connection to nature and time outdoors even in small amounts has been shown to be a vital part maintaining physical and mental health [DOTHIS:: INSERT SOURCE HERE]. In an effort to make urban spaces more livable, planners are turning to parks and natural areas to connect people to nature.
 <p>  Equity issues aside, overturning and correcting more than a century of bad planning is a daunting task. Many cities filled in and built up over the course of the 20th century as land became a premium commodity [DOTHIS:: FIND A SOURCE???]. Does this density present significant challenges for today's planning professionals? This research seeks to investigate the relationship between urban demographics like density and park access. In exploring this relationship, we hypothesize that there is an intermediate/sublinear relationship between urban population density and public open space availability.
 
-### DTM Discussion if desired (Likely for long form introduction section)
-This puts the US in phase three or post-industrial phase of the demographic transition model.
+### Data Overview
+
+<p> This report uses data from the UN-Habitat Urban Indicators Database and the ParkServe® Database maintained by the Trust for Public Land. The UN data relates to the UN-SDG 11.7.1 pertaining to access to open spaces and green areas. 
+<p> The January 2025 version of the UN Open Spaces and Green Areas data includes the average share of urban areas allocated to streets and open public spaces as well as the share of the urban population with convenient access to an open public space. 
+
+::: {.callout-tip}
+## Definition
+In this case, the UN defines "convenient access to an open public space" as the "urban population withing 400 meters walking distance along the street network to an open public space" [DOTHIS:: Add Citation from UN data].
+:::
+
+<p> These data collected by the UN were collected in 2020 and provided as a .xls format spreadsheet. These data were converted to .csv format with Microsoft Excel. The ParkServe® data selected for use is the 2020 data set to match the year the UN data was recorded. Specifically, this report uses elements of the City Park Facts: Acreage & Park System Highlights. The ParkServe® data is much less synthesized and was available as a .xml file. The file was structured for viewing as a spreadsheet rather than for further analysis and included multiple worksheets withing the workbook. In converting the file to a .csv file, the data spread across multiple worksheets was collated in a single worksheet and converted to a summarized dataset .csv file.
+<p> These data are lacking a shared numerical position data type but share a city name column formatted as "city_name, two_letter_state_abrreviation". There is not perfect overlap between cities with data in each database however, there are XX (DOTHIS:: Enter the total cities with overlapping data post-data-join) cities shared between the datasets. Cities present in only one data set will be culled when the data is joined.
+
+### Methods
 
 
 
