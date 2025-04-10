@@ -1,24 +1,25 @@
 ---
-title: Final Project Proposal - Lab 7
+title: Final Project Abstract - Lab 7
 authors:
   - name: Bella Conrad
     affiliation: Colorado State University
     roles: writing
-    corresponding: FALSE
+    corresponding: false
   - name: Zachary Cramton
     affiliation: Colorado State University
     roles: writing
-    corresponding: FALSE
+    corresponding: false
   - name: Rachel Delorie
     affiliation: Colorado State University
     roles: writing
-    corresponding: TRUE
+    corresponding: true
+    
 bibliography: references.bib
-csl: ./apa.csl
-toc: FALSE
+csl: apa.csl
+  
 output:
   html_document:
-    output_dir: "docs"
+    output-dir: docs
     github_pages: true
 ---
 
@@ -71,7 +72,7 @@ The cities found in only one dataset will be cut from the data to accommodate th
 10.	Plot and graph data to visually display test results.
 11. Explore using the model to predict values for cities included in only one document (if time allows).
 
-### Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA)
 
 ```{r}
 #| label: Basic EDA
@@ -111,4 +112,4 @@ filter(row_number() %in% c(2:5, 7:101)) %>%
   
 ```
 
-### References
+## References
