@@ -15,12 +15,15 @@ authors:
     corresponding: true
     
 bibliography: references.bib
-csl: apa.csl
+csl: ./apa.csl
   
 output:
   html_document:
     output-dir: docs
     github_pages: true
+    
+execute: 
+  echo: true
 ---
 
 # Urbanization, Density and Access to Public Parks in the United States
