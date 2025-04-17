@@ -26,7 +26,7 @@ and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
 draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">writing</role>
 <xref ref-type="aff" rid="aff-1">a</xref>
 </contrib>
-<contrib contrib-type="author">
+<contrib contrib-type="author" corresp="yes">
 <name>
 <surname>Cramton</surname>
 <given-names>Zachary</given-names>
@@ -36,8 +36,9 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
 <role vocab="https://credit.niso.org" vocab-term="writing – original
 draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">writing</role>
 <xref ref-type="aff" rid="aff-1">a</xref>
+<xref ref-type="corresp" rid="cor-2">&#x002A;</xref>
 </contrib>
-<contrib contrib-type="author" corresp="yes">
+<contrib contrib-type="author">
 <name>
 <surname>Delorie</surname>
 <given-names>Rachel</given-names>
@@ -47,7 +48,6 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
 <role vocab="https://credit.niso.org" vocab-term="writing – original
 draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">writing</role>
 <xref ref-type="aff" rid="aff-1">a</xref>
-<xref ref-type="corresp" rid="cor-3">&#x002A;</xref>
 </contrib>
 </contrib-group>
 <aff id="aff-1">
@@ -63,7 +63,7 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
 
 </aff>
 <author-notes>
-<corresp id="cor-3"></corresp>
+<corresp id="cor-2"></corresp>
 </author-notes>
 
 
@@ -128,18 +128,18 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
       Thousands of years of living in rural settings makes urban living
       hard for most people’s biology. Connection to nature and time
       outdoors even in small amounts has been shown to be a vital part
-      maintaining physical and mental health [DOTHIS:: INSERT SOURCE
-      HERE]. In an effort to make urban spaces more livable, planners
+      maintaining physical and mental health [DOTHIS:: Find additional
+      source]. In an effort to make urban spaces more livable, planners
       are turning to parks and natural areas to connect people to
       nature.</p>
       <p>Equity issues aside, overturning and correcting more than a
       century of bad planning is a daunting task. Many cities filled in
       and built up over the course of the 20th century as land became a
-      premium commodity [DOTHIS:: FIND A SOURCE???]. Does this density
-      present significant challenges for today’s planning professionals?
-      This research seeks to investigate the relationship between urban
-      demographics like density and park access. In exploring this
-      relationship, we hypothesize that there is an
+      premium commodity [DOTHIS:: Find additional source]. Does this
+      density present significant challenges for today’s planning
+      professionals? This research seeks to investigate the relationship
+      between urban demographics like density and park access. In
+      exploring this relationship, we hypothesize that there is an
       intermediate/sublinear relationship between urban population
       density and public open space availability.</p>
     </sec>
@@ -175,11 +175,10 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
       converted to a summarized dataset .csv file.</p>
       <p>These data are lacking a shared numerical position data type
       but share a city name column formatted as “city_name,
-      two_letter_state_abrreviation”. There is not perfect overlap
-      between cities with data in each database however, there are XX
-      (DOTHIS:: Enter the total cities with overlapping data
-      post-data-join) cities shared between the datasets. Cities present
-      in only one data set will be culled when the data is joined.</p>
+      two_letter_state_abbreviation”. There is not perfect overlap
+      between cities with data in each database however, there are 25
+      cities shared between the datasets. Cities present in only one
+      data set will be culled when the data is joined.</p>
     </sec>
     <sec id="methods">
       <title>Methods</title>
@@ -253,88 +252,240 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
   </sec>
   <sec id="exploratory-data-analysis-eda">
     <title>Exploratory Data Analysis (EDA)</title>
-    <code language="r script">## EDA work is ongoing.
-
-library(dplyr)</code>
-    <preformat>
-Attaching package: 'dplyr'</preformat>
-    <preformat>The following objects are masked from 'package:stats':
-
-    filter, lag</preformat>
-    <preformat>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</preformat>
+    <p>The data has already been discussed in general terms in the data
+    overview section. There will be a readme file created to elaborate
+    on the sources, formatting and manipulation required for each
+    dataset before joining them into the urban_parks_data data frame. In
+    general terms, prior to importing into RStudio, the .xml files the
+    data came in were opened in MS Excel; the sheets were formatted to
+    be converted to .csv files including condensing multiple worksheets
+    of the ParkServe® data into a sinigle sheet for easier conversion to
+    a .csv file. While some of the cleaning done in Excel could have
+    been completed in RStudio, it was not efficient to do so. Using
+    Excel was faster and more flexible for that use case. Similar
+    reformatting was required with the UN data as the headers were
+    unreasonably long by default. The readme that will be created for
+    each (or both) files will include a more detailed summary of what
+    each variable means.</p>
     <code language="r script">library(tidyverse)</code>
     <preformat>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ forcats   1.0.0     ✔ readr     2.1.5
-✔ ggplot2   3.5.1     ✔ stringr   1.5.1
-✔ lubridate 1.9.4     ✔ tibble    3.2.1
-✔ purrr     1.0.2     ✔ tidyr     1.3.1</preformat>
-    <preformat>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</preformat>
-    <code language="r script">library(ggplot2)
-library(here)</code>
+    <code language="r script">library(here)</code>
     <preformat>Warning: package 'here' was built under R version 4.4.3</preformat>
     <preformat>here() starts at C:/Users/Zacha/github/CSU/ESS 330/ess_330_project_proposal</preformat>
-    <code language="r script">#Create some visualizations and descriptions of what data you have, where you got it, and how and if you need to clean and manipulate it for your project
+    <code language="r script">library(flextable)</code>
+    <preformat>
+Attaching package: 'flextable'
 
-parkserve_data &lt;- read_csv(here(&quot;data&quot;, &quot;parkserve_summarized_facts_2020.csv&quot;))</code>
-    <preformat>New names:
-Rows: 104 Columns: 18
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
-(18): Population Density, ...2, ...3, ...4, ...5, ...6, ...7, ...8, ...9...
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...2`
-• `` -&gt; `...3`
-• `` -&gt; `...4`
-• `` -&gt; `...5`
-• `` -&gt; `...6`
-• `` -&gt; `...7`
-• `` -&gt; `...8`
-• `` -&gt; `...9`
-• `` -&gt; `...10`
-• `` -&gt; `...11`
-• `` -&gt; `...12`
-• `` -&gt; `...13`
-• `` -&gt; `...14`
-• `` -&gt; `...15`
-• `` -&gt; `...16`
-• `` -&gt; `...17`
-• `` -&gt; `...18`</preformat>
-    <code language="r script">un_land_use_data &lt;- read_csv(here(&quot;data&quot;, &quot;un_land_use.csv&quot;))</code>
-    <preformat>Rows: 59 Columns: 3
+The following object is masked from 'package:purrr':
+
+    compose</preformat>
+    <code language="r script">library(patchwork)</code>
+    <preformat>Warning: package 'patchwork' was built under R version 4.4.3</preformat>
+    <code language="r script"># Create some visualizations and descriptions of what data you have, where you got it, and how and if you need to clean and manipulate it for your project
+
+# Import data from csvs and clean NAs
+parkserve_data &lt;- read_csv(here(&quot;data&quot;, &quot;clean_data/parkserve_summarized_facts_2020.csv&quot;)) %&gt;% 
+  drop_na()</code>
+    <preformat>Rows: 100 Columns: 15
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
-chr (1): City Name
-dbl (2): Average share of the built-up area of cities that is open space for...
+chr (10): city_name, city_pop, land_area, revised_area, percent_designed_par...
+dbl  (5): parkland_area, designed_park_area, natural_park_area, parkland_per...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</preformat>
-    <code language="r script">parkserve_clean &lt;- parkserve_data %&gt;%  
-filter(row_number() %in% c(2:5, 7:101)) %&gt;%
-  select(-`...6`) %&gt;%
-  rename(
-    City = `Population Density`, 
-    `City Population` = `...2`,
-    `Land Area` = `...3`, 
-    `Revised Area` = `...4`, 
-    Density = `...5`,
-    `Adjusted City Area` = `...7`,
-    `Parkland Area` = `...8`,
-    `Parkland as percent of city area` = `...9`,
-    `Total Acres` = `...10`,
-    `Designed Acres` = `...11`,
-    `Undeveloped Acres` = `...12`, 
-    `Percent Designed` = `...13`, 
-    `Percent Natural` = `...14`, 
-    `Parkland per Thousand Residents` = `...15`, 
-    `Park Units` = `...16`, 
-    `Park Units per ten thousand Residents` = `...17`, 
-    `Percent of Residents within Half-Mile Walk of Park` = `...18`)</code>
+    <code language="r script">un_land_use_data &lt;- read_csv(here(&quot;data&quot;, &quot;clean_data/un_land_use.csv&quot;)) %&gt;% 
+  drop_na()</code>
+    <preformat>Rows: 59 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (1): city_name
+dbl (2): mean_percent_built_open_space, mean_percent_open_space_access
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</preformat>
+    <code language="r script"># Add columns and finish cleaning parkserve data
+clean_parkserve_data &lt;- parkserve_data %&gt;%
+  mutate(
+    across(-city_name, ~ as.numeric(.x)),  # Convert all columns to numeric except for city name
+    parkland_percent = parkland_percent * 100, # Convert parkland percent from ratio
+    # Fix design/natural park area percentage calculations
+    percent_designed_parks = ifelse(parkland_area == 0, NA, (designed_park_area / parkland_area) * 100),
+    percent_natural_parks = ifelse(parkland_area == 0, NA, (natural_park_area / parkland_area) * 100),
+    #New calculation for designed-natural area ratio
+    dn_area_ratio = ifelse(percent_natural_parks == 0, NA, percent_designed_parks / percent_natural_parks)
+  )
+
+  
+  
+# Join data removing cities found in only one of the two datasets
+urban_parks_data &lt;- clean_parkserve_data %&gt;% 
+  inner_join(un_land_use_data, by = &quot;city_name&quot;)  
+
+# Basic data structure exploration
+glimpse(urban_parks_data)</code>
+    <preformat>Rows: 25
+Columns: 18
+$ city_name                      &lt;chr&gt; &quot;Anchorage, AK&quot;, &quot;Atlanta, GA&quot;, &quot;Boston…
+$ city_pop                       &lt;dbl&gt; 299100, 498059, 687725, 2744859, 377963…
+$ land_area                      &lt;dbl&gt; 1090997, 85217, 30897, 145686, 49726, 2…
+$ revised_area                   &lt;dbl&gt; 1086019, 84250, 29175, 136796, 46880, 2…
+$ parkland_area                  &lt;dbl&gt; 914138, 5293, 5072, 13609, 3170, 20352,…
+$ designed_park_area             &lt;dbl&gt; 2417, 3864, 2556, 8593, 1792, 10974, 40…
+$ natural_park_area              &lt;dbl&gt; 911721, 1429, 2516, 4430, 1378, 9378, 1…
+$ parkland_percent               &lt;dbl&gt; 84.173297, 6.282493, 17.384747, 9.94839…
+$ percent_designed_parks         &lt;dbl&gt; 0.2644021, 73.0020782, 50.3943218, 63.1…
+$ percent_natural_parks          &lt;dbl&gt; 99.735598, 26.997922, 49.605678, 32.551…
+$ pop_density                    &lt;dbl&gt; 0.28, 5.91, 23.57, 20.07, 8.06, 6.39, 7…
+$ parkland_per_1k_pop            &lt;dbl&gt; 3056.295553, 10.627255, 7.375041, 4.744…
+$ park_units                     &lt;dbl&gt; 228, 416, 373, 645, 179, 397, 302, 70, …
+$ park_units_per_10k_pop         &lt;dbl&gt; 7.622869, 8.352424, 5.423680, 2.349847,…
+$ percent_half_mile_walk         &lt;dbl&gt; 0.75091, 0.72447, 0.99790, 0.98220, 0.8…
+$ dn_area_ratio                  &lt;dbl&gt; 0.00265103, 2.70398880, 1.01589825, 1.9…
+$ mean_percent_built_open_space  &lt;dbl&gt; 22.0, 13.8, 19.8, 17.2, 20.0, 20.4, 20.…
+$ mean_percent_open_space_access &lt;dbl&gt; 71.9, 21.2, 68.2, 47.8, 29.8, 41.9, 43.…</preformat>
+    <code language="r script"># Descriptive Stats
+
+  # Write function to round numeric columns to two decimal places
+  round_numeric &lt;- function(df) {
+    df %&gt;% 
+      mutate(across(where(is.numeric), ~round(.x, 2)))
+  }
+
+  # Summarize stats by variable
+    desc_stats_parks &lt;- urban_parks_data %&gt;% 
+      select(where(is.numeric)) %&gt;% 
+      pivot_longer(cols = everything(), names_to = &quot;variable&quot;, values_to = &quot;value&quot;) %&gt;% 
+      group_by(variable) %&gt;% 
+      summarize(mean = mean(value, na.rm = TRUE), 
+                median = median(value, na.rm = TRUE), 
+                sd = sd(value, na.rm = TRUE),
+                Q1 = quantile(value, 0.25, na.rm = TRUE),
+                Q3 = quantile(value, 0.75, na.rm = TRUE)) %&gt;% 
+      round_numeric()
+      
+      # Print descriptive stats with flextable
+      desc_stats_flex &lt;- flextable(desc_stats_parks) %&gt;%
+        set_caption(&quot;Summarized Urban Parks Statistics&quot;) %&gt;% 
+        set_header_labels(
+          variable = &quot;Variable&quot;,
+          mean = &quot;Mean&quot;,
+          median = &quot;Median&quot;,
+          sd = &quot;Standard Deviation&quot;,
+          Q1 = &quot;1st Quartile (Q1)&quot;,
+          Q3 = &quot;3rd Quartile (Q3)&quot;) %&gt;% 
+        autofit()
+
+# Find Top/Bottom cities for percent parkland
+  
+  # Select relevant columns
+    simplified_vars &lt;- c(&quot;city_name&quot;, &quot;city_pop&quot;, &quot;revised_area&quot;, &quot;pop_density&quot;, &quot;parkland_area&quot;, &quot;dn_area_ratio&quot;, &quot;parkland_percent&quot;, &quot;parkland_per_1k_pop&quot;, &quot;percent_half_mile_walk&quot;)
+  
+  # Filter top/bottom 10 cities
+  top10_park_percent &lt;- urban_parks_data %&gt;% 
+    arrange(desc(parkland_percent)) %&gt;% 
+    slice_head(n = 10) %&gt;% 
+    select(all_of(simplified_vars)) %&gt;% 
+    round_numeric()
+  
+  bottom10_park_percent &lt;- urban_parks_data %&gt;% 
+    arrange(parkland_percent) %&gt;% 
+    slice_head(n = 10) %&gt;% 
+    select(all_of(simplified_vars)) %&gt;% 
+    round_numeric()
+  
+  # Create top/bottom 10 flextables w/ function
+  # Create function
+  make_best_worst_flextbl &lt;-function(df, caption) {
+    flextable(df) %&gt;% 
+    set_caption(caption) %&gt;%
+    set_header_labels(
+      city_name = &quot;City Name&quot;,
+      city_pop = &quot;City Population&quot;,
+      revised_area = &quot;City Land Area (Revised) (Acres)&quot;,
+      pop_density = &quot;Population Density (People/Acre)&quot;,
+      parkland_area = &quot;City Parkland Area (Acres)&quot;,
+      parkland_percent = &quot;Percent Parkland&quot;,
+      parkland_per_1k_pop = &quot;Parkland Per (1000) Capita&quot;,
+      percent_half_mile_walk = &quot;Percent of Residents within 0.5 Miles of a Park&quot;,
+      dn_area_ratio = &quot;Designed-Natural Park Area Ratio (Designed Park (%) / Natural Park (%)&quot;) %&gt;% 
+    autofit()
+  }
+  
+  top10_park_percent_flex &lt;- make_best_worst_flextbl(top10_park_percent, &quot;Top 10 Cities for Parkland Percentage&quot;)
+  
+  bottom10_park_percent_flex &lt;- make_best_worst_flextbl(bottom10_park_percent, &quot;Top 10 Cities for Parkland Percentage&quot;)
+  
+# Make plots to visualize the data
+# Histogram: Land Area
+land_area_plot &lt;- ggplot(urban_parks_data, aes(x = as.numeric(land_area))) +
+  geom_histogram(bins = 20, fill = &quot;steelblue&quot;, color = &quot;white&quot;) +
+  labs(x = &quot;Land Area (Acres)&quot;, y = &quot;Frequency&quot;, title = &quot;Distribution of City Land Areas&quot;) +
+  theme_minimal()
+
+# Scatterplot: Land Area vs Parkland Area
+land_vs_park_area_plot &lt;- ggplot(urban_parks_data, aes(x = as.numeric(land_area), y = parkland_area)) +
+  geom_point(color = &quot;forestgreen&quot;) +
+  labs(x = &quot;Land Area (Acres)&quot;, y = &quot;Parkland Area\n(Acres)&quot;, title = &quot;Land Area vs Parkland Area&quot;) +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Population Density vs Parkland Percent
+density_vs_park_percent_plot &lt;- ggplot(urban_parks_data, aes(x = as.numeric(pop_density), y = parkland_percent)) +
+  geom_point(color = &quot;darkorange&quot;) +
+  labs(x = &quot;Population Density (People/Acre)&quot;, y = &quot;Percent Parkland&quot;, title = &quot;Population Density vs\nParkland Percent&quot;) +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Designed-Natural Park Area Ratio vs Parkland Percent
+dn_area_ratio_vs_park_percent_plot &lt;- ggplot(urban_parks_data, aes(x = dn_area_ratio, y = parkland_percent)) +
+  geom_point(color = &quot;mediumvioletred&quot;) +
+  labs(x = &quot;Designed-Natural Park Area Ratio&quot;, y = &quot;Percent Parkland&quot;, title = &quot;Designed-Natural Park Area\nRatio vs Parkland Percent&quot;) +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Percent Designed Parks vs Percent Natural Parks
+designed_vs_natural_parks_plot &lt;- ggplot(urban_parks_data, aes(x = percent_designed_parks, y = percent_natural_parks)) +
+  geom_point(color = &quot;cadetblue&quot;) +
+  labs(x = &quot;Percent Designed Parks&quot;, y = &quot;Percent Natural\nParks&quot;, title = &quot;Percent Designed vs Natural Parks&quot;) +
+  theme_minimal()
+
+# Scatterplot: Percent Open Space Access vs Percent Built Open Space
+open_space_access_vs_built_plot &lt;- ggplot(urban_parks_data, aes(x = mean_percent_open_space_access, y = mean_percent_built_open_space)) +
+  geom_point(color = &quot;seagreen&quot;) +
+  labs(x = &quot;Mean % Open Space Access&quot;, y = &quot;Mean % Built\nOpen Space&quot;, title = &quot;Accessibility of Built Open Space&quot;) +
+  theme_minimal()
+
+# Combine all plots in one figure using patchwork (optional)
+all_eda_plots &lt;- (land_area_plot | land_vs_park_area_plot) / 
+  (density_vs_park_percent_plot | dn_area_ratio_vs_park_percent_plot) / 
+  (designed_vs_natural_parks_plot| open_space_access_vs_built_plot) +
+  plot_layout(guides = &quot;collect&quot;)
+
+# Display data summary and visualization
+
+  # Display flextables
+  desc_stats_flex</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-1.png" />
+    <code language="r script">  top10_park_percent_flex</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-2.png" />
+    <code language="r script">  bottom10_park_percent_flex </code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-3.png" />
+    <code language="r script">  # Display patchwork plots
+  all_eda_plots</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-7.png" />
   </sec>
   <sec id="references">
     <title>References</title>
@@ -423,7 +574,7 @@ filter(row_number() %in% c(2:5, 7:101)) %&gt;%
 <back>
 </back>
 
-<sub-article article-type="notebook" id="nb-4-nb-article">
+<sub-article article-type="notebook" id="nb-3-nb-article">
 <front-stub>
 <title-group>
 <article-title>Final Project Abstract - Lab 7</article-title>
@@ -440,7 +591,7 @@ filter(row_number() %in% c(2:5, 7:101)) %&gt;%
 draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">writing</role>
 <xref ref-type="aff" rid="aff-1-nb-article">a</xref>
 </contrib>
-<contrib contrib-type="author">
+<contrib contrib-type="author" corresp="yes">
 <name>
 <surname>Cramton</surname>
 <given-names>Zachary</given-names>
@@ -450,8 +601,9 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
 <role vocab="https://credit.niso.org" vocab-term="writing – original
 draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">writing</role>
 <xref ref-type="aff" rid="aff-1-nb-article">a</xref>
+<xref ref-type="corresp" rid="cor-2-nb-article">&#x002A;</xref>
 </contrib>
-<contrib contrib-type="author" corresp="yes">
+<contrib contrib-type="author">
 <name>
 <surname>Delorie</surname>
 <given-names>Rachel</given-names>
@@ -461,7 +613,6 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
 <role vocab="https://credit.niso.org" vocab-term="writing – original
 draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">writing</role>
 <xref ref-type="aff" rid="aff-1-nb-article">a</xref>
-<xref ref-type="corresp" rid="cor-3-nb-article">&#x002A;</xref>
 </contrib>
 </contrib-group>
 <aff id="aff-1-nb-article">
@@ -477,7 +628,7 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
 
 </aff>
 <author-notes>
-<corresp id="cor-3-nb-article"></corresp>
+<corresp id="cor-2-nb-article"></corresp>
 </author-notes>
 </front-stub>
 
@@ -527,18 +678,18 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
       Thousands of years of living in rural settings makes urban living
       hard for most people’s biology. Connection to nature and time
       outdoors even in small amounts has been shown to be a vital part
-      maintaining physical and mental health [DOTHIS:: INSERT SOURCE
-      HERE]. In an effort to make urban spaces more livable, planners
+      maintaining physical and mental health [DOTHIS:: Find additional
+      source]. In an effort to make urban spaces more livable, planners
       are turning to parks and natural areas to connect people to
       nature.</p>
       <p>Equity issues aside, overturning and correcting more than a
       century of bad planning is a daunting task. Many cities filled in
       and built up over the course of the 20th century as land became a
-      premium commodity [DOTHIS:: FIND A SOURCE???]. Does this density
-      present significant challenges for today’s planning professionals?
-      This research seeks to investigate the relationship between urban
-      demographics like density and park access. In exploring this
-      relationship, we hypothesize that there is an
+      premium commodity [DOTHIS:: Find additional source]. Does this
+      density present significant challenges for today’s planning
+      professionals? This research seeks to investigate the relationship
+      between urban demographics like density and park access. In
+      exploring this relationship, we hypothesize that there is an
       intermediate/sublinear relationship between urban population
       density and public open space availability.</p>
     </sec>
@@ -577,11 +728,10 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
       converted to a summarized dataset .csv file.</p>
       <p>These data are lacking a shared numerical position data type
       but share a city name column formatted as “city_name,
-      two_letter_state_abrreviation”. There is not perfect overlap
-      between cities with data in each database however, there are XX
-      (DOTHIS:: Enter the total cities with overlapping data
-      post-data-join) cities shared between the datasets. Cities present
-      in only one data set will be culled when the data is joined.</p>
+      two_letter_state_abbreviation”. There is not perfect overlap
+      between cities with data in each database however, there are 25
+      cities shared between the datasets. Cities present in only one
+      data set will be culled when the data is joined.</p>
     </sec>
     <sec id="methods-nb-article">
       <title>Methods</title>
@@ -657,107 +807,257 @@ draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-
   </sec>
   <sec id="exploratory-data-analysis-eda-nb-article">
     <title>Exploratory Data Analysis (EDA)</title>
+    <p>The data has already been discussed in general terms in the data
+    overview section. There will be a readme file created to elaborate
+    on the sources, formatting and manipulation required for each
+    dataset before joining them into the urban_parks_data data frame. In
+    general terms, prior to importing into RStudio, the .xml files the
+    data came in were opened in MS Excel; the sheets were formatted to
+    be converted to .csv files including condensing multiple worksheets
+    of the ParkServe® data into a sinigle sheet for easier conversion to
+    a .csv file. While some of the cleaning done in Excel could have
+    been completed in RStudio, it was not efficient to do so. Using
+    Excel was faster and more flexible for that use case. Similar
+    reformatting was required with the UN data as the headers were
+    unreasonably long by default. The readme that will be created for
+    each (or both) files will include a more detailed summary of what
+    each variable means.</p>
     <sec specific-use="notebook-content">
-    <code language="r script">## EDA work is ongoing.
-
-library(dplyr)</code>
-    <boxed-text>
-      <preformat>
-Attaching package: 'dplyr'</preformat>
-    </boxed-text>
-    <boxed-text>
-      <preformat>The following objects are masked from 'package:stats':
-
-    filter, lag</preformat>
-    </boxed-text>
-    <boxed-text>
-      <preformat>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</preformat>
-    </boxed-text>
     <code language="r script">library(tidyverse)</code>
     <boxed-text>
       <preformat>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ forcats   1.0.0     ✔ readr     2.1.5
-✔ ggplot2   3.5.1     ✔ stringr   1.5.1
-✔ lubridate 1.9.4     ✔ tibble    3.2.1
-✔ purrr     1.0.2     ✔ tidyr     1.3.1</preformat>
-    </boxed-text>
-    <boxed-text>
-      <preformat>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</preformat>
     </boxed-text>
-    <code language="r script">library(ggplot2)
-library(here)</code>
+    <code language="r script">library(here)</code>
     <boxed-text>
       <preformat>Warning: package 'here' was built under R version 4.4.3</preformat>
     </boxed-text>
     <boxed-text>
       <preformat>here() starts at C:/Users/Zacha/github/CSU/ESS 330/ess_330_project_proposal</preformat>
     </boxed-text>
-    <code language="r script">#Create some visualizations and descriptions of what data you have, where you got it, and how and if you need to clean and manipulate it for your project
+    <code language="r script">library(flextable)</code>
+    <boxed-text>
+      <preformat>
+Attaching package: 'flextable'
 
-parkserve_data &lt;- read_csv(here(&quot;data&quot;, &quot;parkserve_summarized_facts_2020.csv&quot;))</code>
-    <boxed-text>
-      <preformat>New names:
-Rows: 104 Columns: 18
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
-(18): Population Density, ...2, ...3, ...4, ...5, ...6, ...7, ...8, ...9...
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...2`
-• `` -&gt; `...3`
-• `` -&gt; `...4`
-• `` -&gt; `...5`
-• `` -&gt; `...6`
-• `` -&gt; `...7`
-• `` -&gt; `...8`
-• `` -&gt; `...9`
-• `` -&gt; `...10`
-• `` -&gt; `...11`
-• `` -&gt; `...12`
-• `` -&gt; `...13`
-• `` -&gt; `...14`
-• `` -&gt; `...15`
-• `` -&gt; `...16`
-• `` -&gt; `...17`
-• `` -&gt; `...18`</preformat>
+The following object is masked from 'package:purrr':
+
+    compose</preformat>
     </boxed-text>
-    <code language="r script">un_land_use_data &lt;- read_csv(here(&quot;data&quot;, &quot;un_land_use.csv&quot;))</code>
+    <code language="r script">library(patchwork)</code>
     <boxed-text>
-      <preformat>Rows: 59 Columns: 3
+      <preformat>Warning: package 'patchwork' was built under R version 4.4.3</preformat>
+    </boxed-text>
+    <code language="r script"># Create some visualizations and descriptions of what data you have, where you got it, and how and if you need to clean and manipulate it for your project
+
+# Import data from csvs and clean NAs
+parkserve_data &lt;- read_csv(here(&quot;data&quot;, &quot;clean_data/parkserve_summarized_facts_2020.csv&quot;)) %&gt;% 
+  drop_na()</code>
+    <boxed-text>
+      <preformat>Rows: 100 Columns: 15
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
-chr (1): City Name
-dbl (2): Average share of the built-up area of cities that is open space for...
+chr (10): city_name, city_pop, land_area, revised_area, percent_designed_par...
+dbl  (5): parkland_area, designed_park_area, natural_park_area, parkland_per...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</preformat>
     </boxed-text>
-    <code language="r script">parkserve_clean &lt;- parkserve_data %&gt;%  
-filter(row_number() %in% c(2:5, 7:101)) %&gt;%
-  select(-`...6`) %&gt;%
-  rename(
-    City = `Population Density`, 
-    `City Population` = `...2`,
-    `Land Area` = `...3`, 
-    `Revised Area` = `...4`, 
-    Density = `...5`,
-    `Adjusted City Area` = `...7`,
-    `Parkland Area` = `...8`,
-    `Parkland as percent of city area` = `...9`,
-    `Total Acres` = `...10`,
-    `Designed Acres` = `...11`,
-    `Undeveloped Acres` = `...12`, 
-    `Percent Designed` = `...13`, 
-    `Percent Natural` = `...14`, 
-    `Parkland per Thousand Residents` = `...15`, 
-    `Park Units` = `...16`, 
-    `Park Units per ten thousand Residents` = `...17`, 
-    `Percent of Residents within Half-Mile Walk of Park` = `...18`)</code>
+    <code language="r script">un_land_use_data &lt;- read_csv(here(&quot;data&quot;, &quot;clean_data/un_land_use.csv&quot;)) %&gt;% 
+  drop_na()</code>
+    <boxed-text>
+      <preformat>Rows: 59 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (1): city_name
+dbl (2): mean_percent_built_open_space, mean_percent_open_space_access
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</preformat>
+    </boxed-text>
+    <code language="r script"># Add columns and finish cleaning parkserve data
+clean_parkserve_data &lt;- parkserve_data %&gt;%
+  mutate(
+    across(-city_name, ~ as.numeric(.x)),  # Convert all columns to numeric except for city name
+    parkland_percent = parkland_percent * 100, # Convert parkland percent from ratio
+    # Fix design/natural park area percentage calculations
+    percent_designed_parks = ifelse(parkland_area == 0, NA, (designed_park_area / parkland_area) * 100),
+    percent_natural_parks = ifelse(parkland_area == 0, NA, (natural_park_area / parkland_area) * 100),
+    #New calculation for designed-natural area ratio
+    dn_area_ratio = ifelse(percent_natural_parks == 0, NA, percent_designed_parks / percent_natural_parks)
+  )
+
+  
+  
+# Join data removing cities found in only one of the two datasets
+urban_parks_data &lt;- clean_parkserve_data %&gt;% 
+  inner_join(un_land_use_data, by = &quot;city_name&quot;)  
+
+# Basic data structure exploration
+glimpse(urban_parks_data)</code>
+    <boxed-text>
+      <preformat>Rows: 25
+Columns: 18
+$ city_name                      &lt;chr&gt; &quot;Anchorage, AK&quot;, &quot;Atlanta, GA&quot;, &quot;Boston…
+$ city_pop                       &lt;dbl&gt; 299100, 498059, 687725, 2744859, 377963…
+$ land_area                      &lt;dbl&gt; 1090997, 85217, 30897, 145686, 49726, 2…
+$ revised_area                   &lt;dbl&gt; 1086019, 84250, 29175, 136796, 46880, 2…
+$ parkland_area                  &lt;dbl&gt; 914138, 5293, 5072, 13609, 3170, 20352,…
+$ designed_park_area             &lt;dbl&gt; 2417, 3864, 2556, 8593, 1792, 10974, 40…
+$ natural_park_area              &lt;dbl&gt; 911721, 1429, 2516, 4430, 1378, 9378, 1…
+$ parkland_percent               &lt;dbl&gt; 84.173297, 6.282493, 17.384747, 9.94839…
+$ percent_designed_parks         &lt;dbl&gt; 0.2644021, 73.0020782, 50.3943218, 63.1…
+$ percent_natural_parks          &lt;dbl&gt; 99.735598, 26.997922, 49.605678, 32.551…
+$ pop_density                    &lt;dbl&gt; 0.28, 5.91, 23.57, 20.07, 8.06, 6.39, 7…
+$ parkland_per_1k_pop            &lt;dbl&gt; 3056.295553, 10.627255, 7.375041, 4.744…
+$ park_units                     &lt;dbl&gt; 228, 416, 373, 645, 179, 397, 302, 70, …
+$ park_units_per_10k_pop         &lt;dbl&gt; 7.622869, 8.352424, 5.423680, 2.349847,…
+$ percent_half_mile_walk         &lt;dbl&gt; 0.75091, 0.72447, 0.99790, 0.98220, 0.8…
+$ dn_area_ratio                  &lt;dbl&gt; 0.00265103, 2.70398880, 1.01589825, 1.9…
+$ mean_percent_built_open_space  &lt;dbl&gt; 22.0, 13.8, 19.8, 17.2, 20.0, 20.4, 20.…
+$ mean_percent_open_space_access &lt;dbl&gt; 71.9, 21.2, 68.2, 47.8, 29.8, 41.9, 43.…</preformat>
+    </boxed-text>
+    <code language="r script"># Descriptive Stats
+
+  # Write function to round numeric columns to two decimal places
+  round_numeric &lt;- function(df) {
+    df %&gt;% 
+      mutate(across(where(is.numeric), ~round(.x, 2)))
+  }
+
+  # Summarize stats by variable
+    desc_stats_parks &lt;- urban_parks_data %&gt;% 
+      select(where(is.numeric)) %&gt;% 
+      pivot_longer(cols = everything(), names_to = &quot;variable&quot;, values_to = &quot;value&quot;) %&gt;% 
+      group_by(variable) %&gt;% 
+      summarize(mean = mean(value, na.rm = TRUE), 
+                median = median(value, na.rm = TRUE), 
+                sd = sd(value, na.rm = TRUE),
+                Q1 = quantile(value, 0.25, na.rm = TRUE),
+                Q3 = quantile(value, 0.75, na.rm = TRUE)) %&gt;% 
+      round_numeric()
+      
+      # Print descriptive stats with flextable
+      desc_stats_flex &lt;- flextable(desc_stats_parks) %&gt;%
+        set_caption(&quot;Summarized Urban Parks Statistics&quot;) %&gt;% 
+        set_header_labels(
+          variable = &quot;Variable&quot;,
+          mean = &quot;Mean&quot;,
+          median = &quot;Median&quot;,
+          sd = &quot;Standard Deviation&quot;,
+          Q1 = &quot;1st Quartile (Q1)&quot;,
+          Q3 = &quot;3rd Quartile (Q3)&quot;) %&gt;% 
+        autofit()
+
+# Find Top/Bottom cities for percent parkland
+  
+  # Select relevant columns
+    simplified_vars &lt;- c(&quot;city_name&quot;, &quot;city_pop&quot;, &quot;revised_area&quot;, &quot;pop_density&quot;, &quot;parkland_area&quot;, &quot;dn_area_ratio&quot;, &quot;parkland_percent&quot;, &quot;parkland_per_1k_pop&quot;, &quot;percent_half_mile_walk&quot;)
+  
+  # Filter top/bottom 10 cities
+  top10_park_percent &lt;- urban_parks_data %&gt;% 
+    arrange(desc(parkland_percent)) %&gt;% 
+    slice_head(n = 10) %&gt;% 
+    select(all_of(simplified_vars)) %&gt;% 
+    round_numeric()
+  
+  bottom10_park_percent &lt;- urban_parks_data %&gt;% 
+    arrange(parkland_percent) %&gt;% 
+    slice_head(n = 10) %&gt;% 
+    select(all_of(simplified_vars)) %&gt;% 
+    round_numeric()
+  
+  # Create top/bottom 10 flextables w/ function
+  # Create function
+  make_best_worst_flextbl &lt;-function(df, caption) {
+    flextable(df) %&gt;% 
+    set_caption(caption) %&gt;%
+    set_header_labels(
+      city_name = &quot;City Name&quot;,
+      city_pop = &quot;City Population&quot;,
+      revised_area = &quot;City Land Area (Revised) (Acres)&quot;,
+      pop_density = &quot;Population Density (People/Acre)&quot;,
+      parkland_area = &quot;City Parkland Area (Acres)&quot;,
+      parkland_percent = &quot;Percent Parkland&quot;,
+      parkland_per_1k_pop = &quot;Parkland Per (1000) Capita&quot;,
+      percent_half_mile_walk = &quot;Percent of Residents within 0.5 Miles of a Park&quot;,
+      dn_area_ratio = &quot;Designed-Natural Park Area Ratio (Designed Park (%) / Natural Park (%)&quot;) %&gt;% 
+    autofit()
+  }
+  
+  top10_park_percent_flex &lt;- make_best_worst_flextbl(top10_park_percent, &quot;Top 10 Cities for Parkland Percentage&quot;)
+  
+  bottom10_park_percent_flex &lt;- make_best_worst_flextbl(bottom10_park_percent, &quot;Top 10 Cities for Parkland Percentage&quot;)
+  
+# Make plots to visualize the data
+# Histogram: Land Area
+land_area_plot &lt;- ggplot(urban_parks_data, aes(x = as.numeric(land_area))) +
+  geom_histogram(bins = 20, fill = &quot;steelblue&quot;, color = &quot;white&quot;) +
+  labs(x = &quot;Land Area (Acres)&quot;, y = &quot;Frequency&quot;, title = &quot;Distribution of City Land Areas&quot;) +
+  theme_minimal()
+
+# Scatterplot: Land Area vs Parkland Area
+land_vs_park_area_plot &lt;- ggplot(urban_parks_data, aes(x = as.numeric(land_area), y = parkland_area)) +
+  geom_point(color = &quot;forestgreen&quot;) +
+  labs(x = &quot;Land Area (Acres)&quot;, y = &quot;Parkland Area\n(Acres)&quot;, title = &quot;Land Area vs Parkland Area&quot;) +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Population Density vs Parkland Percent
+density_vs_park_percent_plot &lt;- ggplot(urban_parks_data, aes(x = as.numeric(pop_density), y = parkland_percent)) +
+  geom_point(color = &quot;darkorange&quot;) +
+  labs(x = &quot;Population Density (People/Acre)&quot;, y = &quot;Percent Parkland&quot;, title = &quot;Population Density vs\nParkland Percent&quot;) +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Designed-Natural Park Area Ratio vs Parkland Percent
+dn_area_ratio_vs_park_percent_plot &lt;- ggplot(urban_parks_data, aes(x = dn_area_ratio, y = parkland_percent)) +
+  geom_point(color = &quot;mediumvioletred&quot;) +
+  labs(x = &quot;Designed-Natural Park Area Ratio&quot;, y = &quot;Percent Parkland&quot;, title = &quot;Designed-Natural Park Area\nRatio vs Parkland Percent&quot;) +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Percent Designed Parks vs Percent Natural Parks
+designed_vs_natural_parks_plot &lt;- ggplot(urban_parks_data, aes(x = percent_designed_parks, y = percent_natural_parks)) +
+  geom_point(color = &quot;cadetblue&quot;) +
+  labs(x = &quot;Percent Designed Parks&quot;, y = &quot;Percent Natural\nParks&quot;, title = &quot;Percent Designed vs Natural Parks&quot;) +
+  theme_minimal()
+
+# Scatterplot: Percent Open Space Access vs Percent Built Open Space
+open_space_access_vs_built_plot &lt;- ggplot(urban_parks_data, aes(x = mean_percent_open_space_access, y = mean_percent_built_open_space)) +
+  geom_point(color = &quot;seagreen&quot;) +
+  labs(x = &quot;Mean % Open Space Access&quot;, y = &quot;Mean % Built\nOpen Space&quot;, title = &quot;Accessibility of Built Open Space&quot;) +
+  theme_minimal()
+
+# Combine all plots in one figure using patchwork (optional)
+all_eda_plots &lt;- (land_area_plot | land_vs_park_area_plot) / 
+  (density_vs_park_percent_plot | dn_area_ratio_vs_park_percent_plot) / 
+  (designed_vs_natural_parks_plot| open_space_access_vs_built_plot) +
+  plot_layout(guides = &quot;collect&quot;)
+
+# Display data summary and visualization
+
+  # Display flextables
+  desc_stats_flex</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-1.png" />
+    <code language="r script">  top10_park_percent_flex</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-2.png" />
+    <code language="r script">  bottom10_park_percent_flex </code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-3.png" />
+    <code language="r script">  # Display patchwork plots
+  all_eda_plots</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Basic%20EDA-7.png" />
     </sec>
   </sec>
   <sec id="references-nb-article">

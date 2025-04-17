@@ -3,19 +3,22 @@ title: Final Project Abstract - Lab 7
 authors:
   - name: Bella Conrad
     affiliation: Colorado State University
-    roles: writing
+    roles: 
+      - writing
     corresponding: false
   - name: Zachary Cramton
     affiliation: Colorado State University
-    roles: writing
-    corresponding: false
+    roles: 
+      - writing
+    corresponding: true
   - name: Rachel Delorie
     affiliation: Colorado State University
-    roles: writing
-    corresponding: true
+    roles: 
+      - writing
+    corresponding: false
     
 bibliography: references.bib
-csl: ./apa.csl
+csl: "./apa.csl"
   
 output:
   html_document:
@@ -40,8 +43,8 @@ Prior to the 2020 Census urban areas were defined as any area with greater than 
 :::
 
 <p> by the 14th Census in 1920. In the century since the 1920 census the percentage of individuals living in urban areas has increased to 80.7% [@slack2020changing]. As more people moved to urban areas, those areas expanded forming urbanized areas and large cities.
-<p>  Urban planning has existed for centuries out of necessity, historically dominated by efficiency and utilitarianism, optimizing the world we live in for profitability, corporate productivity, and automobile-based mobility. This optimization came with sacrifices, which now impact an increasingly large majority of the population. In recent years, the discipline has begun to prioritize human factors over utilitarian efficiency. Thousands of years of living in rural settings makes urban living hard for most people's biology. Connection to nature and time outdoors even in small amounts has been shown to be a vital part maintaining physical and mental health [DOTHIS:: INSERT SOURCE HERE]. In an effort to make urban spaces more livable, planners are turning to parks and natural areas to connect people to nature.
-<p>  Equity issues aside, overturning and correcting more than a century of bad planning is a daunting task. Many cities filled in and built up over the course of the 20th century as land became a premium commodity [DOTHIS:: FIND A SOURCE???]. Does this density present significant challenges for today's planning professionals? This research seeks to investigate the relationship between urban demographics like density and park access. In exploring this relationship, we hypothesize that there is an intermediate/sublinear relationship between urban population density and public open space availability.
+<p>  Urban planning has existed for centuries out of necessity, historically dominated by efficiency and utilitarianism, optimizing the world we live in for profitability, corporate productivity, and automobile-based mobility. This optimization came with sacrifices, which now impact an increasingly large majority of the population. In recent years, the discipline has begun to prioritize human factors over utilitarian efficiency. Thousands of years of living in rural settings makes urban living hard for most people's biology. Connection to nature and time outdoors even in small amounts has been shown to be a vital part maintaining physical and mental health [DOTHIS:: Find additional source]. In an effort to make urban spaces more livable, planners are turning to parks and natural areas to connect people to nature.
+<p>  Equity issues aside, overturning and correcting more than a century of bad planning is a daunting task. Many cities filled in and built up over the course of the 20th century as land became a premium commodity [DOTHIS:: Find additional source]. Does this density present significant challenges for today's planning professionals? This research seeks to investigate the relationship between urban demographics like density and park access. In exploring this relationship, we hypothesize that there is an intermediate/sublinear relationship between urban population density and public open space availability.
 
 ### Data Overview
 
@@ -54,7 +57,7 @@ In this case, the UN defines "convenient access to an open public space" as the 
 :::
 
 <p> These data collected by the UN were collected in 2020 and provided as a .xls format spreadsheet. These data were converted to .csv format with Microsoft Excel. The ParkServe® data selected for use is the 2020 data set to match the year the UN data was recorded. Specifically, this report uses elements of the City Park Facts: Acreage & Park System Highlights. The ParkServe® data is much less synthesized and was available as a .xml file. The file was structured for viewing as a spreadsheet rather than for further analysis and included multiple worksheets withing the workbook. In converting the file to a .csv file, the data spread across multiple worksheets was collated in a single worksheet and converted to a summarized dataset .csv file.
-<p> These data are lacking a shared numerical position data type but share a city name column formatted as "city_name, two_letter_state_abrreviation". There is not perfect overlap between cities with data in each database however, there are XX (DOTHIS:: Enter the total cities with overlapping data post-data-join) cities shared between the datasets. Cities present in only one data set will be culled when the data is joined.
+<p> These data are lacking a shared numerical position data type but share a city name column formatted as "city_name, two_letter_state_abbreviation". There is not perfect overlap between cities with data in each database however, there are 25 cities shared between the datasets. Cities present in only one data set will be culled when the data is joined.
 
 ### Methods
 1.	Clean the data. The raw data were downloaded as Excel spreadsheets, some reformatting in Excel was required to effectively exporting as a .csv file and importing the new summarized file to RStudio. Remaining data cleaning will occur in R as needed including any header changes or additional columns needed.
@@ -76,43 +79,176 @@ The cities found in only one dataset will be cut from the data to accommodate th
 11. Explore using the model to predict values for cities included in only one document (if time allows).
 
 ## Exploratory Data Analysis (EDA)
+<p> The data has already been discussed in general terms in the data overview section. There will be a readme file created to elaborate on the sources, formatting and manipulation required for each dataset before joining them into the urban_parks_data data frame. In general terms, prior to importing into RStudio, the .xml files the data came in were opened in MS Excel; the sheets were formatted to be converted to .csv files including condensing multiple worksheets of the ParkServe® data into a sinigle sheet for easier conversion to a .csv file. While some of the cleaning done in Excel could have been completed in RStudio, it was not efficient to do so. Using Excel was faster and more flexible for that use case. Similar reformatting was required with the UN data as the headers were unreasonably long by default. The readme that will be created for each (or both) files will include a more detailed summary of what each variable means.
 
 ```{r}
 #| label: Basic EDA
-## EDA work is ongoing.
 
-library(dplyr)
 library(tidyverse)
-library(ggplot2)
 library(here)
+library(flextable)
+library(patchwork)
 
-#Create some visualizations and descriptions of what data you have, where you got it, and how and if you need to clean and manipulate it for your project
+# Create some visualizations and descriptions of what data you have, where you got it, and how and if you need to clean and manipulate it for your project
 
-parkserve_data <- read_csv(here("data", "parkserve_summarized_facts_2020.csv"))
-un_land_use_data <- read_csv(here("data", "un_land_use.csv"))
+# Import data from csvs and clean NAs
+parkserve_data <- read_csv(here("data", "clean_data/parkserve_summarized_facts_2020.csv")) %>% 
+  drop_na()
+un_land_use_data <- read_csv(here("data", "clean_data/un_land_use.csv")) %>% 
+  drop_na()
 
-parkserve_clean <- parkserve_data %>%  
-filter(row_number() %in% c(2:5, 7:101)) %>%
-  select(-`...6`) %>%
-  rename(
-    City = `Population Density`, 
-    `City Population` = `...2`,
-    `Land Area` = `...3`, 
-    `Revised Area` = `...4`, 
-    Density = `...5`,
-    `Adjusted City Area` = `...7`,
-    `Parkland Area` = `...8`,
-    `Parkland as percent of city area` = `...9`,
-    `Total Acres` = `...10`,
-    `Designed Acres` = `...11`,
-    `Undeveloped Acres` = `...12`, 
-    `Percent Designed` = `...13`, 
-    `Percent Natural` = `...14`, 
-    `Parkland per Thousand Residents` = `...15`, 
-    `Park Units` = `...16`, 
-    `Park Units per ten thousand Residents` = `...17`, 
-    `Percent of Residents within Half-Mile Walk of Park` = `...18`)
+# Add columns and finish cleaning parkserve data
+clean_parkserve_data <- parkserve_data %>%
+  mutate(
+    across(-city_name, ~ as.numeric(.x)),  # Convert all columns to numeric except for city name
+    parkland_percent = parkland_percent * 100, # Convert parkland percent from ratio
+    # Fix design/natural park area percentage calculations
+    percent_designed_parks = ifelse(parkland_area == 0, NA, (designed_park_area / parkland_area) * 100),
+    percent_natural_parks = ifelse(parkland_area == 0, NA, (natural_park_area / parkland_area) * 100),
+    #New calculation for designed-natural area ratio
+    dn_area_ratio = ifelse(percent_natural_parks == 0, NA, percent_designed_parks / percent_natural_parks)
+  )
+
   
+  
+# Join data removing cities found in only one of the two datasets
+urban_parks_data <- clean_parkserve_data %>% 
+  inner_join(un_land_use_data, by = "city_name")  
+
+# Basic data structure exploration
+glimpse(urban_parks_data)
+
+# Descriptive Stats
+
+  # Write function to round numeric columns to two decimal places
+  round_numeric <- function(df) {
+    df %>% 
+      mutate(across(where(is.numeric), ~round(.x, 2)))
+  }
+
+  # Summarize stats by variable
+    desc_stats_parks <- urban_parks_data %>% 
+      select(where(is.numeric)) %>% 
+      pivot_longer(cols = everything(), names_to = "variable", values_to = "value") %>% 
+      group_by(variable) %>% 
+      summarize(mean = mean(value, na.rm = TRUE), 
+                median = median(value, na.rm = TRUE), 
+                sd = sd(value, na.rm = TRUE),
+                Q1 = quantile(value, 0.25, na.rm = TRUE),
+                Q3 = quantile(value, 0.75, na.rm = TRUE)) %>% 
+      round_numeric()
+      
+      # Print descriptive stats with flextable
+      desc_stats_flex <- flextable(desc_stats_parks) %>%
+        set_caption("Summarized Urban Parks Statistics") %>% 
+        set_header_labels(
+          variable = "Variable",
+          mean = "Mean",
+          median = "Median",
+          sd = "Standard Deviation",
+          Q1 = "1st Quartile (Q1)",
+          Q3 = "3rd Quartile (Q3)") %>% 
+        autofit()
+
+# Find Top/Bottom cities for percent parkland
+  
+  # Select relevant columns
+    simplified_vars <- c("city_name", "city_pop", "revised_area", "pop_density", "parkland_area", "dn_area_ratio", "parkland_percent", "parkland_per_1k_pop", "percent_half_mile_walk")
+  
+  # Filter top/bottom 10 cities
+  top10_park_percent <- urban_parks_data %>% 
+    arrange(desc(parkland_percent)) %>% 
+    slice_head(n = 10) %>% 
+    select(all_of(simplified_vars)) %>% 
+    round_numeric()
+  
+  bottom10_park_percent <- urban_parks_data %>% 
+    arrange(parkland_percent) %>% 
+    slice_head(n = 10) %>% 
+    select(all_of(simplified_vars)) %>% 
+    round_numeric()
+  
+  # Create top/bottom 10 flextables w/ function
+  # Create function
+  make_best_worst_flextbl <-function(df, caption) {
+    flextable(df) %>% 
+    set_caption(caption) %>%
+    set_header_labels(
+      city_name = "City Name",
+      city_pop = "City Population",
+      revised_area = "City Land Area (Revised) (Acres)",
+      pop_density = "Population Density (People/Acre)",
+      parkland_area = "City Parkland Area (Acres)",
+      parkland_percent = "Percent Parkland",
+      parkland_per_1k_pop = "Parkland Per (1000) Capita",
+      percent_half_mile_walk = "Percent of Residents within 0.5 Miles of a Park",
+      dn_area_ratio = "Designed-Natural Park Area Ratio (Designed Park (%) / Natural Park (%)") %>% 
+    autofit()
+  }
+  
+  top10_park_percent_flex <- make_best_worst_flextbl(top10_park_percent, "Top 10 Cities for Parkland Percentage")
+  
+  bottom10_park_percent_flex <- make_best_worst_flextbl(bottom10_park_percent, "Top 10 Cities for Parkland Percentage")
+  
+# Make plots to visualize the data
+# Histogram: Land Area
+land_area_plot <- ggplot(urban_parks_data, aes(x = as.numeric(land_area))) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  labs(x = "Land Area (Acres)", y = "Frequency", title = "Distribution of City Land Areas") +
+  theme_minimal()
+
+# Scatterplot: Land Area vs Parkland Area
+land_vs_park_area_plot <- ggplot(urban_parks_data, aes(x = as.numeric(land_area), y = parkland_area)) +
+  geom_point(color = "forestgreen") +
+  labs(x = "Land Area (Acres)", y = "Parkland Area\n(Acres)", title = "Land Area vs Parkland Area") +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Population Density vs Parkland Percent
+density_vs_park_percent_plot <- ggplot(urban_parks_data, aes(x = as.numeric(pop_density), y = parkland_percent)) +
+  geom_point(color = "darkorange") +
+  labs(x = "Population Density (People/Acre)", y = "Percent Parkland", title = "Population Density vs\nParkland Percent") +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Designed-Natural Park Area Ratio vs Parkland Percent
+dn_area_ratio_vs_park_percent_plot <- ggplot(urban_parks_data, aes(x = dn_area_ratio, y = parkland_percent)) +
+  geom_point(color = "mediumvioletred") +
+  labs(x = "Designed-Natural Park Area Ratio", y = "Percent Parkland", title = "Designed-Natural Park Area\nRatio vs Parkland Percent") +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  theme_minimal()
+
+# Scatterplot: Percent Designed Parks vs Percent Natural Parks
+designed_vs_natural_parks_plot <- ggplot(urban_parks_data, aes(x = percent_designed_parks, y = percent_natural_parks)) +
+  geom_point(color = "cadetblue") +
+  labs(x = "Percent Designed Parks", y = "Percent Natural\nParks", title = "Percent Designed vs Natural Parks") +
+  theme_minimal()
+
+# Scatterplot: Percent Open Space Access vs Percent Built Open Space
+open_space_access_vs_built_plot <- ggplot(urban_parks_data, aes(x = mean_percent_open_space_access, y = mean_percent_built_open_space)) +
+  geom_point(color = "seagreen") +
+  labs(x = "Mean % Open Space Access", y = "Mean % Built\nOpen Space", title = "Accessibility of Built Open Space") +
+  theme_minimal()
+
+# Combine all plots in one figure using patchwork (optional)
+all_eda_plots <- (land_area_plot | land_vs_park_area_plot) / 
+  (density_vs_park_percent_plot | dn_area_ratio_vs_park_percent_plot) / 
+  (designed_vs_natural_parks_plot| open_space_access_vs_built_plot) +
+  plot_layout(guides = "collect")
+
+# Display data summary and visualization
+
+  # Display flextables
+  desc_stats_flex
+  top10_park_percent_flex
+  bottom10_park_percent_flex 
+  
+  # Display patchwork plots
+  all_eda_plots
+
 ```
 
 ## References
